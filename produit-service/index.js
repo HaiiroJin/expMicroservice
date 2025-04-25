@@ -10,7 +10,7 @@ app.use(cors());
 
 app.use(express.json());
 
-mongoose.connect("mongodb://localhost/produit-service")
+mongoose.connect("mongodb://mongo:27017/produit-service")
     .then(() => {
         console.log(`Produit-Service DB Connected`);
     })

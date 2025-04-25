@@ -9,7 +9,7 @@ const isAuthenticated = require("./Middleware/isAuthenticated");
 const cors = require('cors');
 app.use(cors());
 
-mongoose.connect("mongodb://localhost/commande-service")
+mongoose.connect("mongodb://mongo:27017/commande-service")
     .then(() => {
         console.log(`Commande-Service DB Connected`);
     })

@@ -9,7 +9,7 @@ const Utilisateur = require("./Models/Utilisateur");
 const cors = require('cors');
 app.use(cors());
 
-mongoose.connect("mongodb://localhost:27017/auth-service")
+mongoose.connect("mongodb://mongo:27017/auth-service")
     .then(() => {
         console.log(`Auth-Service DB Connected`);
     })

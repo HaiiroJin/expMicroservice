@@ -27,7 +27,7 @@ const produits = [
 
 async function seed() {
   try {
-    await mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(process.env.MONGO_URL);
     await Produit.deleteMany({});
     await Produit.insertMany(produits);
     console.log("Seeding done!");

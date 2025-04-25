@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  produit-service:
+    build: ./produit-service
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./produit-service/.env
+    depends_on:
+      - mongo
+  commande-service:
+    build: ./commande-service
+    ports:
+      - "4001:4001"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/commande-service
+    depends_on:
+      - mongo
+  auth-service:
+    build: ./auth-service
+    ports:
+      - "4002:4002"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/auth-service
+    depends_on:
+      - mongo
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - produit-service
+      - commande-service
+      - auth-service
+  mongo:
+    image: mongo:6.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data:
